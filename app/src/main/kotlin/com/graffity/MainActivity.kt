@@ -2,8 +2,11 @@ package com.graffity
 
 import android.app.Activity
 import android.os.Bundle
+import android.view.Gravity
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.widget.ImageView
 
 import com.facebook.appevents.AppEventsLogger
 //import kotlinx.android.synthetic.activity_main.hello as helloView
@@ -15,9 +18,22 @@ class MainActivity : Activity() {
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_main)
         //helloView.setText("yo")
-        relativeLayout {
-          textView(R.string.hello_world) {
-          }
+        verticalLayout{
+            padding = dip(30)
+            imageView(R.mipmap.po_cup).lparams {
+                gravity = Gravity.CENTER
+            }
+            editText {
+                hint = "Name"
+                textSize = 24f
+            }
+            editText {
+                hint = "Password"
+                textSize = 24f
+            }
+            button("Login") {
+                textSize = 26f
+            }
         }
     }
 
