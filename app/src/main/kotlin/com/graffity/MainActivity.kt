@@ -1,19 +1,30 @@
 package com.graffity
 
 //import kotlinx.android.synthetic.activity_main.hello as helloView
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.FragmentActivity
-import com.facebook.FacebookSdk
+import android.util.Log
 import com.facebook.appevents.AppEventsLogger
+import retrofacebook.Facebook
 
 open class MainActivity : FragmentActivity() {
 
     var fb_fragment : FBAuthFragment? = null
 
+    val facebook: Facebook by lazy { Facebook.create(this) }
+
     override fun onCreate(savedInstanceState: Bundle?) : Unit {
         super.onCreate(savedInstanceState)
 
-        FacebookSdk.sdkInitialize(getApplicationContext());
+
+        val myPosts = facebook.getPosts()
+        myPosts.take(10).forEach {
+            //Log.d("FacebookActivity", "id = " + it.id())
+            //Log.d("FacebookActivity", "message = " + it.message())
+
+        }
+
 
         if (savedInstanceState == null) {
             fb_fragment = FBAuthFragment()
@@ -24,6 +35,13 @@ open class MainActivity : FragmentActivity() {
         }
         //setContentView(R.layout.activity_main)
         //helloView.setText("yo")
+    }
+
+    @Override
+    public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        Log.d("xxxxxxxxxxxxxx", "onActivityResult" )
+        facebook!!.onActivityResult(requestCode, resultCode, data)
     }
 
     override fun onResume() {
