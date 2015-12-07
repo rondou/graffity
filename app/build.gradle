@@ -49,6 +49,8 @@ dependencies {
 
     compile 'com.infstory:recyclerlist:1.0.2'
 
+    compile 'com.github.yongjhih:StickerCamera:-SNAPSHOT'
+
     // testCompile mockito
     // testCompile assertj-android
     // testCompile expresso

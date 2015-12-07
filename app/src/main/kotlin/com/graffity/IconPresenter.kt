@@ -1,5 +1,6 @@
 package com.graffity
 
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import com.bumptech.glide.Glide
@@ -14,5 +15,11 @@ class IconPresenter(itemView: View?) : Presenter<Photo>(itemView) {
 
     override fun onBind(position: Int, item: Photo?) {
         Glide.with(itemView.context).load(item?.images()?.get(0)?.source()).into(icon)
+
+        icon?.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View) {
+                Log.d("xxxxxxxxxxxxxxxxxx","1234567890")
+            }
+        })
     }
 }
